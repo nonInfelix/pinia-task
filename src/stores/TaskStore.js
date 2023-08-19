@@ -8,5 +8,6 @@ export const useTaskStore = defineStore("tasks", {
       { id: 1, title: "example task 1", isFav: false },
       { id: 2, title: "example task 2", isFav: true },
     ],
+    name: "Pinia Tasks",
   }),
 });
