@@ -11,6 +11,12 @@
         <TaskDetails :task="task"></TaskDetails>
       </div>
     </section>
+
+    <section class="task-list">
+      <div v-for="task in tasksStore.fav" :key="task.id">
+        <TaskDetails :task="task"></TaskDetails>
+      </div>
+    </section>
   </main>
 </template>
 
