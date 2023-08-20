@@ -7,12 +7,14 @@
     </header>
 
     <section class="task-list">
+      <p>tasks</p>
       <div v-for="task in tasksStore.tasks" :key="task.id">
         <TaskDetails :task="task"></TaskDetails>
       </div>
     </section>
 
     <section class="task-list">
+      <p>favorited tasks</p>
       <div v-for="task in tasksStore.fav" :key="task.id">
         <TaskDetails :task="task"></TaskDetails>
       </div>
