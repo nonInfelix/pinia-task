@@ -13,6 +13,7 @@
         Show favorite Tasks
       </button>
     </div>
+    <TaskForm></TaskForm>
     <section v-if="taskStatus == 'all'" class="task-list">
       <p>You have {{ tasksStore.totalCount }} tasks</p>
       <div v-for="task in tasksStore.tasks" :key="task.id">
@@ -33,10 +34,12 @@
 import { useTaskStore } from "./stores/TaskStore";
 import { mapStores } from "pinia";
 import TaskDetails from "./components/TaskDetails.vue";
+import TaskForm from "./components/TaskForm.vue";
 
 export default {
   components: {
     TaskDetails,
+    TaskForm,
   },
   data() {
     return {
