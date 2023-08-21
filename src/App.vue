@@ -2,19 +2,26 @@
   <main>
     <!-- task header -->
     <header>
-      <img src="./assets/pinia-logo.svg" alt="" />
+      <div class="img-container">
+        <img src="./assets/pinia-logo.svg" alt="" />
+      </div>
       <h1>Pinia Tasks</h1>
     </header>
-
-    <section class="task-list">
-      <p>tasks</p>
+    <div class="btn-menu">
+      <button class="btn" @click="taskStatus = 'all'">Show all Tasks</button>
+      <button class="btn" @click="taskStatus = 'fav'">
+        Show favorite Tasks
+      </button>
+    </div>
+    <section v-if="taskStatus == 'all'" class="task-list">
+      <p>You have {{ tasksStore.totalCount }} tasks</p>
       <div v-for="task in tasksStore.tasks" :key="task.id">
         <TaskDetails :task="task"></TaskDetails>
       </div>
     </section>
 
-    <section class="task-list">
-      <p>favorited tasks</p>
+    <section v-if="taskStatus == 'fav'" class="task-list">
+      <p>You have {{ tasksStore.favCount }} favorite tasks</p>
       <div v-for="task in tasksStore.fav" :key="task.id">
         <TaskDetails :task="task"></TaskDetails>
       </div>
@@ -30,6 +37,11 @@ import TaskDetails from "./components/TaskDetails.vue";
 export default {
   components: {
     TaskDetails,
+  },
+  data() {
+    return {
+      taskStatus: "all",
+    };
   },
   computed: {
     ...mapStores(useTaskStore),
