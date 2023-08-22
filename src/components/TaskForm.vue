@@ -24,7 +24,6 @@ export default {
     handleSubmit() {
       if (this.newTask.length > 0) {
         this.tasksStore.addTask({
-          id: this.tasksStore.totalCount + 1,
           title: this.newTask,
           isFav: false,
         });
