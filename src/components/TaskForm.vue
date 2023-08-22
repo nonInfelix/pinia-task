@@ -29,6 +29,7 @@ export default {
           isFav: false,
         });
       }
+      this.newTask = "";
       console.log(this.tasksStore.tasks);
     },
   },
