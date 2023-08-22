@@ -1,4 +1,7 @@
 # pinia-task
+1. start node server
+2. provide own API key and url in .env file in /backend
+OR go to https://pinia-task-ten.vercel.app/
 
 ## Project setup
 ```
