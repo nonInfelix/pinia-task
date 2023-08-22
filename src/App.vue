@@ -6,29 +6,31 @@
       </div>
       <h1>Pinia Tasks</h1>
     </header>
-    <TaskForm></TaskForm>
-    <div class="btn-menu">
-      <button class="btn" @click="taskStatus = 'all'">Show all Tasks</button>
-      <button class="btn" @click="taskStatus = 'fav'">
-        Show favorite Tasks
-      </button>
-      <div v-if="tasksStore.isLoading" class="loading">Loading Tasks</div>
-    </div>
-    <section v-if="taskStatus == 'all'" class="task-list">
-      <p>You have {{ tasksStore.totalCount }} tasks</p>
-      <div v-for="task in tasksStore.tasks" :key="task.id">
-        <TaskDetails :task="task"></TaskDetails>
+    <div v-if="tasksStore.isLoading" class="loading">Loading Tasks</div>
+    <div v-if="!tasksStore.isLoading">
+      <TaskForm></TaskForm>
+      <div class="btn-menu">
+        <button class="btn" @click="taskStatus = 'all'">Show all Tasks</button>
+        <button class="btn" @click="taskStatus = 'fav'">
+          Show favorite Tasks
+        </button>
       </div>
-    </section>
+      <section v-if="taskStatus == 'all'" class="task-list">
+        <p>You have {{ tasksStore.totalCount }} tasks</p>
+        <div v-for="task in tasksStore.tasks" :key="task.id">
+          <TaskDetails :task="task"></TaskDetails>
+        </div>
+      </section>
 
-    <section v-if="taskStatus == 'fav'" class="task-list">
-      <p>You have {{ tasksStore.favCount }} favorite tasks</p>
-      <div v-for="task in tasksStore.fav" :key="task.id">
-        <TaskDetails :task="task"></TaskDetails>
+      <section v-if="taskStatus == 'fav'" class="task-list">
+        <p>You have {{ tasksStore.favCount }} favorite tasks</p>
+        <div v-for="task in tasksStore.fav" :key="task.id">
+          <TaskDetails :task="task"></TaskDetails>
+        </div>
+      </section>
+      <div v-if="tasksStore.tasks.length > 0" class="btn-container">
+        <button class="btn btn-reset" @click="tasksStore.$reset">reset</button>
       </div>
-    </section>
-    <div v-if="tasksStore.tasks.length > 0" class="btn-container">
-      <button class="btn btn-reset" @click="tasksStore.$reset">reset</button>
     </div>
   </main>
 </template>
